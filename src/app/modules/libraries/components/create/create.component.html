@@ -1,0 +1,62 @@
+<div class="page-content-inner">
+
+    <!--Form Layout 1-->
+    <div class="form-layout">
+        <div class="form-outer">
+            <div class="form-header stuck-header">
+                <div class="form-header-inner">
+                    <div class="left">
+                        <h3>{{ titleAction }} {{ title }}</h3>
+                    </div>
+                    <div class="right">
+                        <div class="buttons">
+                            <a [routerLink]="['/Home/Libraries/Main']"
+                                class="button h-button is-light is-dark-outlined">
+                                <span>Regresar</span>
+                            </a>
+                            <button class="button h-button is-primary is-raised" [class.is-loading]="loading"
+                                [disabled]="formLibrary.invalid" (click)="onSubmit()">{{ titleAction }}</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-body" [formGroup]="formLibrary">
+                <!--Fieldset-->
+                <div class="form-fieldset">
+                    <div class="fieldset-heading">
+                        <h4>Información de la {{ title }}</h4>
+                        <p>Por favor ingresa los campos</p>
+                    </div>
+
+                    <div class="columns is-multiline">
+                        <div class="column is-12">
+                            <div class="field">
+                                <label>Nombre</label>
+                                <div class="control">
+                                    <input type="text" class="input" placeholder="" formControlName="name">
+                                    <small *ngIf="formLibrary.get('name')!.hasError('required')
+                                    && formLibrary.get('name')!.touched">
+                                        Se require de un nombre.
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="column is-12">
+                            <div class="field">
+                                <label>Ubicación</label>
+                                <div class="control">
+                                    <textarea class="textarea" rows="4" placeholder=""
+                                        formControlName="location"></textarea>
+                                        <small *ngIf="formLibrary.get('location')!.hasError('required')
+                                        && formLibrary.get('location')!.touched">
+                                            Se require de una ubicación.
+                                        </small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

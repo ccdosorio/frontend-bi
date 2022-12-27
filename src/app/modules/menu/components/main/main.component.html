@@ -1,0 +1,51 @@
+<div id="huro-app" class="app-wrapper">
+    <!--Sidebar curved-->
+    <div class="main-sidebar is-curved">
+        <div class="sidebar-brand">
+            <a href="/">
+                <img class="light-image" src="assets/BiLogoNav.png" alt="">
+            </a>
+        </div>
+        <div class="sidebar-inner">
+            <div class="naver"></div>
+
+            <ul class="icon-menu">
+                <li>
+                    <a [routerLink]="['/Home/Libraries/Main']" routerLinkActive="router-link-active">
+                        <i class="sidebar-svg" data-feather="grid"></i>
+                    </a>
+                </li>
+            </ul>
+
+            <!-- User account -->
+            <ul class="bottom-menu">
+                <li>
+                    <a (click)="logout()">
+                        <i class="sidebar-svg" data-feather="log-out"></i>
+                    </a>
+                </li> <!-- Profile -->
+            </ul>
+        </div>
+    </div>
+
+    <!-- Content Wrapper -->
+    <div class="view-wrapper">
+
+        <div class="page-content-wrapper">
+            <div class="page-content is-relative">
+
+                <div class="page-title has-text-centered">
+                    <div class="title-wrap">
+                        <h1 class="title is-4">Bi Libraries</h1>
+                    </div>
+                </div>
+
+                <div class="page-content-inner">
+                    <router-outlet></router-outlet>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>

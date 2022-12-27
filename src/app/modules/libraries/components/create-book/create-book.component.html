@@ -1,0 +1,44 @@
+<div class="form-body" [formGroup]="formBook">
+    <!--Fieldset-->
+    <div class="form-fieldset">
+        <div class="fieldset-heading">
+            <h4>Crear libro</h4>
+            <p>Por favor ingresa los campos</p>
+        </div>
+
+        <div class="columns is-multiline">
+            <div class="column is-12">
+                <div class="field">
+                    <label>Nombre</label>
+                    <div class="control">
+                        <input type="text" class="input" placeholder="" formControlName="name">
+                        <small *ngIf="formBook.get('name')!.hasError('required')
+                        && formBook.get('name')!.touched">
+                            Se require de un nombre.
+                        </small>
+                    </div>
+                </div>
+            </div>
+            <div class="column is-12">
+                <div class="field">
+                    <label>Categoría</label>
+                    <div class="control">
+                        <input class="input" type="text" placeholder="" formControlName="category">
+                        <small *ngIf="formBook.get('category')!.hasError('required')
+                        && formBook.get('category')!.touched">
+                            Se require de una categoría.
+                        </small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Button -->
+<div class="buttons d-flex justify-content-center">
+    <button class="button h-button is-primary is-raised" [disabled]="formBook.invalid" (click)="onSubmit()">
+        Crear
+    </button>
+</div>
+<!-- End Button -->
