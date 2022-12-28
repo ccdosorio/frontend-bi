@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
+import { SweetAlertMessage } from 'src/utils/SweetAlertMessage';
+import { SweetDelete } from 'src/utils/SweetDelete';
 import { BookService } from '../../services/book.service';
 import { LibrariesService } from '../../services/libraries.service';
 
@@ -41,16 +43,36 @@ export class ListBooksComponent implements OnInit {
     this.librariesService.getBooksLibray(id)
       .subscribe({
         next: (resp => {
+          this.isEmptyMessage = false;
           this.listBooks = resp;
         }),
         error: _ => this.isEmptyMessage = true
       });
   }
 
-  openDialogBook(): void {
+  openDialogBook(book: any = null): void {
     this.dialogReference = this.dialog.open(CreateBookComponent, {
       width: '500px',
-      data: { action: this }
+      data: { libraryId: this.libraryId, book: book, action: this }
+    });
+  }
+
+  deleteBook(id: number): void {
+    const title = '¿Seguro que quieres eliminar el libro?';
+    const text = 'No se podrá revertir este cambio';
+
+    SweetDelete(title, text).then((result) => {
+      if (result.isConfirmed) {
+        this.bookService.deleteBook(id).subscribe({
+          next: (_ => {
+            SweetAlertMessage('success', 'Exitoso', 'Libro eliminado con éxito.');
+            this.getBooks(this.libraryId!);
+          }),
+          error: (error) => {
+            SweetAlertMessage('error', 'Error', error.error.message);
+          }
+        });
+      }
     });
   }
 }

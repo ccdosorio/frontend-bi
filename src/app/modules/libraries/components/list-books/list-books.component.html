@@ -17,34 +17,27 @@
 
         <app-placeholder-empty *ngIf="isEmptyMessage"></app-placeholder-empty>
 
-        <div class="columns is-multiline">
+        <div class="columns is-multiline" *ngIf="!isEmptyMessage">
             <!--Grid item-->
             <div class="column is-3" *ngFor="let item of listBooks">
                 <div class="grid-item">
                     <div class="h-avatar is-big">
                         <img class="avatar" src="assets/doc.svg">
                     </div>
-                    <h3 class="dark-inverted">Libro 1</h3>
+                    <h3 class="dark-inverted">{{ item.name }}</h3>
                     <div class="people">
-                        <span class="tag is-rounded is-primary is-elevated">Categoría 1</span>
+                        <span class="tag is-rounded is-primary is-elevated">{{ item.category }}</span>
                     </div>
                     <div class="buttons">
-                        <button class="button h-button is-dark-outlined">
-                            <span class="icon">
-                                <i data-feather="edit-2"></i>
-                            </span>
+                        <button class="button h-button is-dark-outlined" (click)="openDialogBook(item)">
                             <span>Editar</span>
                         </button>
-                        <button class="button h-button is-dark-outlined">
-                            <span class="icon">
-                                <i data-feather="trash"></i>
-                            </span>
+                        <button class="button h-button is-dark-outlined" (click)="deleteBook(item.id)">
                             <span>Eliminar</span>
                         </button>
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 

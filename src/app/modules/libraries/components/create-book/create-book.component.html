@@ -37,7 +37,7 @@
 
 <!-- Button -->
 <div class="buttons d-flex justify-content-center">
-    <button class="button h-button is-primary is-raised" [disabled]="formBook.invalid" (click)="onSubmit()">
+    <button class="button h-button is-primary is-raised" [class.is-loading]="loading" [disabled]="formBook.invalid" (click)="onSubmit()">
         Crear
     </button>
 </div>
