@@ -30,26 +30,39 @@
                     <!--Form-->
                     <div class="form-card">
 
-                        <form>
+                        <form name="loginForm" [formGroup]="formLogin">
                             <div id="signin-form" class="login-form">
                                 <!-- Input -->
                                 <div class="field">
                                     <div class="control">
-                                        <input class="input" type="text" placeholder="Usuario">
+                                        <input class="input" type="text" placeholder="Correo electrónico"
+                                            formControlName="email">
+                                        <small *ngIf="formLogin.get('email')!.hasError('pattern')
+                                        && formLogin.get('email')!.touched">
+                                            Correo electrónico nó válido.
+                                        </small>
+                                        <small *ngIf="formLogin.get('email')!.hasError('required')
+                                        && formLogin.get('email')!.touched">
+                                            Se require de un correo electrónico.
+                                        </small>
                                     </div>
                                 </div>
                                 <!-- Input -->
                                 <div class="field">
                                     <div class="control">
-                                        <input class="input" type="password" placeholder="Contraseña">
+                                        <input class="input" type="password" placeholder="Contraseña"
+                                            formControlName="password">
+                                        <small class="animate__animated animate__fadeIn" *ngIf="formLogin.get('password')!.hasError('required')
+                                            && formLogin.get('password')!.touched">
+                                            Se requiere de una contraseña.
+                                        </small>
                                     </div>
                                 </div>
 
                                 <!-- Submit -->
                                 <div class="control login">
-                                    <button type="button"
-                                        class="button h-button is-primary is-bold is-fullwidth"
-                                        (click)="navigate()">
+                                    <button type="button" class="button h-button is-primary is-bold is-fullwidth"
+                                        [class.is-loading]="loading" (click)="login()">
                                         Ingrear
                                     </button>
                                 </div>

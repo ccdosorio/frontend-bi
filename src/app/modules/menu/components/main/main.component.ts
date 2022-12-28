@@ -19,9 +19,8 @@ export class MainComponent implements OnInit {
   }
 
   logout(): void {
-    console.log('logout');
+    localStorage.removeItem('token');
     this.router.navigate(['/Login/Signin']);
-    
   }
 
 }
