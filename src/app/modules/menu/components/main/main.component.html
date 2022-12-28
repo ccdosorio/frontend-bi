@@ -2,7 +2,7 @@
     <!--Sidebar curved-->
     <div class="main-sidebar is-curved">
         <div class="sidebar-brand">
-            <a href="/">
+            <a [routerLink]="['/Home']">
                 <img class="light-image" src="assets/BiLogoNav.png" alt="">
             </a>
         </div>
@@ -39,7 +39,6 @@
                         <h1 class="title is-4">Bi Libraries</h1>
                     </div>
                 </div>
-
                 <div class="page-content-inner">
                     <router-outlet></router-outlet>
                 </div>
