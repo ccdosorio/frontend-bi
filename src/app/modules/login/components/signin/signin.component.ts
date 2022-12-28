@@ -39,7 +39,7 @@ export class SigninComponent implements OnInit {
       next: resp => {
         localStorage.setItem('token', JSON.stringify(resp['token']));
         this.loading = false;
-        this.router.navigate(['/Home']);
+        this.router.navigate(['/Home/Libraries']);
       }, error: error => {
         this.loading = false;
         SweetAlertMessage('error', 'Error', error.error.message);
