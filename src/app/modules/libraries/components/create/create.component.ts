@@ -19,6 +19,7 @@ export class CreateComponent implements OnInit {
   libraryId: number | undefined;
 
   formLibrary: FormGroup = this.fb.group({
+    id: [0],
     name: ['', Validators.required],
     location: ['', Validators.required]
   });
@@ -55,25 +56,42 @@ export class CreateComponent implements OnInit {
   }
 
   createLibrary(): void {
-    console.log('create');
-    console.log(this.formLibrary.value);
-    SweetAlertMessage('success', 'Exitoso', 'Librería creada exitosamente.');
-    this.router.navigate(['Home/Libraries/Main']);
-    
-
+    this.librariesService.createLibrary(this.formLibrary.value).subscribe({
+      next: _ => {
+        this.loading = false;
+        SweetAlertMessage('success', 'Exitoso', 'Librería creada exitosamente.');
+        this.router.navigate(['Home/Libraries/Main']);
+      },
+      error: error => {
+        SweetAlertMessage('error', 'Error', error.error.message);
+      }
+    });
   }
 
   updateLibrary(): void {
-    console.log('edit');
-    console.log(this.formLibrary.value);
+    this.librariesService.updateLibrary(this.libraryId!, this.formLibrary.value).subscribe({
+      next: _ => {
+        this.loading = false;
+        SweetAlertMessage('success', 'Exitoso', 'Librería editada exitosamente.');
+        this.router.navigate(['Home/Libraries/Main']);
+      },
+      error: error => {
+        SweetAlertMessage('error', 'Error', error.error.message);
+      }
+    });
   }
 
   getLibrary(id: number): void {
-
+    this.librariesService.getById(id).subscribe({
+      next: resp => this.setForm(resp),
+      error: error => console.log(error)
+    });
   }
 
-  setForm(): void {
-
+  setForm(library: any): void {
+    this.formLibrary.get('id')?.setValue(library.id);
+    this.formLibrary.get('name')?.setValue(library.name);
+    this.formLibrary.get('location')?.setValue(library.location);
   }
 
 }

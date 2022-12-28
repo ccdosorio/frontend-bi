@@ -15,9 +15,11 @@
 
     <div class="user-grid user-grid-v1">
 
+        <app-placeholder-empty *ngIf="isEmptyMessage"></app-placeholder-empty>
+
         <div class="columns is-multiline">
             <!--Grid item-->
-            <div class="column is-3">
+            <div class="column is-3" *ngFor="let item of listBooks">
                 <div class="grid-item">
                     <div class="h-avatar is-big">
                         <img class="avatar" src="assets/doc.svg">

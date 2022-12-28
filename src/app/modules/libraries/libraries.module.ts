@@ -8,13 +8,15 @@ import { CreateComponent } from './components/create/create.component';
 import { ListBooksComponent } from './components/list-books/list-books.component';
 import { CreateBookComponent } from './components/create-book/create-book.component';
 import { AngularMaterialModule } from '../angular-material/angular-material.module';
+import { PlaceholderEmptyComponent } from './components/placeholder-empty/placeholder-empty.component';
 
 @NgModule({
   declarations: [
     MainComponent,
     CreateComponent,
     ListBooksComponent,
-    CreateBookComponent
+    CreateBookComponent,
+    PlaceholderEmptyComponent
   ],
   imports: [
     CommonModule,

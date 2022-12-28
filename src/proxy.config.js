@@ -1,14 +1,9 @@
 const PROXY_CONFIG = [
     {
         context: [
-            '/users',
-            '/classrooms',
-            '/books',
-            '/user-books',
-            '/counting',
-            '/students'
+            '/libraries',
         ],
-        target: 'http://localhost:6100/ems-service',
+        target: 'http://localhost:5211/api/',
         secure: false,
         changeOrigin: true,
         logLevel: 'debug'
